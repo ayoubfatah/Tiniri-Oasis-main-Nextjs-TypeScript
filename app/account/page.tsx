@@ -1,3 +1,11 @@
-export default function Page() {
-  return <h1>account page</h1>;
-}
+import { FC } from 'react';
+
+export const metadata: object = {
+  title: 'account',
+};
+
+const Page: FC = () => {
+  return <h1>Account Page</h1>;
+};
+
+export default Page;
