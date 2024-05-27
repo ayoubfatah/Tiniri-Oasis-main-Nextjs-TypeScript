@@ -1,5 +1,6 @@
 import { eachDayOfInterval } from 'date-fns';
 import { supabase } from './supabase';
+import { notFound } from 'next/navigation';
 /////////////
 // GET
 
@@ -7,7 +8,7 @@ export async function getCabin(id: string | number) {
   const { data, error } = await supabase
     .from('cabins')
     .select('*')
-    .eq('id', id)
+    .eq('cabinId', id)
     .single();
 
   // For testing
@@ -15,6 +16,7 @@ export async function getCabin(id: string | number) {
 
   if (error) {
     console.error(error);
+    notFound();
   }
 
   return data;

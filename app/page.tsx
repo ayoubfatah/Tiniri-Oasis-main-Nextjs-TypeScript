@@ -4,7 +4,6 @@ import bg from '@/public/bg.png';
 import Image from 'next/image';
 import Link from 'next/link';
 
-
 export default function Page() {
   return (
     <main className="mt-[200px] ">
@@ -13,7 +12,7 @@ export default function Page() {
         className="object-cover object-top"
         placeholder="blur"
         loading="lazy"
-        quality={80}
+        quality={50}
         src={bg}
         alt="Mountains and forests with two cabins"
       />
