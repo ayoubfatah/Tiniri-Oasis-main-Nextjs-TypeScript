@@ -1,8 +1,10 @@
+/* eslint-disable quotes */
 'use client';
-
 import bg from '@/public/bg.png';
 import Image from 'next/image';
 import Link from 'next/link';
+
+
 export default function Page() {
   return (
     <main className="mt-[200px] ">
@@ -15,6 +17,7 @@ export default function Page() {
         src={bg}
         alt="Mountains and forests with two cabins"
       />
+
       <div className="relative z-10 text-center">
         <h1 className="animate-fade text-8xl text-primary-50 mb-10 tracking-tight font-normal">
           Welcome to paradise.

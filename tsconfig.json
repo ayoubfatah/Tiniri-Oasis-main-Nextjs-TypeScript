@@ -21,6 +21,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/cabins/page.tsx", "app/loading.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/cabins/page.tsx", "app/loading.tsx", "app/_lib/supabase.js"],
   "exclude": ["node_modules"]
 }

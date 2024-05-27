@@ -1,3 +1,7 @@
 {
-  "extends": "next/core-web-vitals"
+  "extends": "next/core-web-vitals",
+  "rules": {
+    "quotes": "off", // Disables the quotes rule
+    "spellcheck/spell-checker": "off" // Disables the spell-checker rule (if you have eslint-plugin-spellcheck)
+  }
 }
