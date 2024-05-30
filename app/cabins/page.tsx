@@ -1,9 +1,7 @@
-import CabinCard from '@/app/_components/CabinCard';
-import { title } from 'process';
-import CabinList from '../_components/CabinList';
 import { Suspense } from 'react';
-import Loading from '../loading';
+import CabinList from '../_components/CabinList';
 import Filter from '../_components/Filter';
+import Loading from '../loading';
 
 type CabinListProps = {
    filter: string;

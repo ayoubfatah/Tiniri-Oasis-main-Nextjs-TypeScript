@@ -1,10 +1,10 @@
-import DateSelector from '@/app/_components/DateSelector';
-import ReservationForm from '@/app/_components/ReservationForm';
+import Reservation from '@/app/_components/Reservation';
 import TextExpander from '@/app/_components/TextExpander';
 import { getCabin, getCabins } from '@/app/_lib/data-service';
+import Loading from '@/app/loading';
 import { EyeSlashIcon, MapPinIcon, UsersIcon } from '@heroicons/react/24/solid';
 import Image from 'next/image';
-import { title } from 'process';
+import { Suspense } from 'react';
 
 // Define the type for the params
 type PageParams = {
@@ -38,8 +38,7 @@ export async function generateMetadata({ params }: { params: PageParams }) {
 }
 
 export default async function Page({ params }: { params: PageParams }) {
-   // Fetch the cabin data
-   const cabin: Cabin | null = await getCabin(params.cabinId);
+   const cabin = await getCabin(params.cabinId);
 
    // Handle the case where the cabin is not found
    if (!cabin) {
@@ -104,13 +103,12 @@ export default async function Page({ params }: { params: PageParams }) {
          </div>
 
          <div>
-            <h2 className="text-5xl font-semibold text-center">
-               Reserve today. Pay on arrival.
+            <h2 className="text-5xl font-semibold  text-center">
+               Reserve {name} today. Pay on arrival.
             </h2>
-            <div className="grid grid-cols-2 my-10  border border-primary-600 min-h-[1000px]">
-               <DateSelector />
-               <ReservationForm />
-            </div>
+            <Suspense fallback={<Loading />}>
+               <Reservation cabin={cabin} params={params} />
+            </Suspense>
          </div>
       </div>
    );

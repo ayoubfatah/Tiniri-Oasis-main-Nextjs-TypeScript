@@ -14,17 +14,18 @@ function isAlreadyBooked(range, datesArr) {
    );
 }
 
-function DateSelector() {
+function DateSelector({ settings, cabin, bookedDates }: any) {
    // CHANGE
-   const regularPrice = 23;
-   const discount = 23;
-   const numNights = 23;
-   const cabinPrice = 23;
+   const { regularPrice } = cabin;
+   const { discount } = cabin;
+   const { numNights } = cabin;
+   const { cabinPrice } = cabin;
    const range = { from: null, to: null };
 
    // SETTINGS
-   const minBookingLength = 1;
-   const maxBookingLength = 23;
+
+   const { minBookingLength } = cabin;
+   const { maxBookingLength } = cabin;
 
    return (
       <div className="flex flex-col justify-between">
