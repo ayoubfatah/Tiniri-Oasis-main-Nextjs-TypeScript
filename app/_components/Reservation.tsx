@@ -19,9 +19,8 @@ export default async function Reservation({ params, cabin }: any) {
       getBookedDatesByCabinId(params.cabinId),
    ]);
 
-   console.log(bookedDates);
    return (
-      <div className="grid grid-cols-2 my-10  border border-primary-600 min-h-[400px]">
+      <div className="grid grid-cols-2 my-10  border border-primary-700 min-h-[400px]">
          <DateSelector
             cabin={cabin}
             bookedDates={bookedDates}
