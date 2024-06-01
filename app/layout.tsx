@@ -1,12 +1,8 @@
-'use client';
 import Header from '@/app/_components/Header';
 import React from 'react';
 import '@/app/_styles/globals.css';
 import { Josefin_Sans } from 'next/font/google';
-import {
-   ReservationContext,
-   ReservationProvider,
-} from './_components/ReservationContext';
+import { ReservationProvider } from './_components/ReservationContext';
 
 type RootLayoutProps = {
    children: React.ReactNode;
