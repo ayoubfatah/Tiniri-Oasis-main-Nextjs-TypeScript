@@ -35,6 +35,7 @@ const autConfig = {
    },
    pages: { signIn: '/login' },
 };
+
 export const {
    auth,
    signIn,

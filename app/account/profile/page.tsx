@@ -1,14 +1,19 @@
 import ProfileForm from '@/app/_components/ProfileForm';
 import SelectCountry from '@/app/_components/SelectCountry';
+import { auth } from '@/app/_lib/auth';
+import { getGuest } from '@/app/_lib/data-service';
 import Image from 'next/image';
 
 export const metadata = {
    title: 'Update profile',
 };
 
-export default function Page() {
+export default async function Page() {
+   const session = await auth();
+   const guest: any = await getGuest(session?.user?.email);
+
    // CHANGE
-   const nationality = 'portugal';
+   const nationalityX = 'portugal';
    return (
       <div>
          <h2 className="font-semibold text-2xl text-accent-400 mb-4">
@@ -20,12 +25,14 @@ export default function Page() {
             faster and smoother. See you soon!
          </p>
 
-         <ProfileForm>
+         <ProfileForm guest={guest}>
             <SelectCountry
                name="nationality"
                id="nationality"
                className="px-5 py-3 bg-primary-200 text-primary-800 w-full shadow-sm rounded-sm"
-               defaultCountry={nationality}
+               defaultCountry={
+                  guest.nationality ? guest.nationality : 'Morocco'
+               }
             />
          </ProfileForm>
       </div>
