@@ -1,6 +1,6 @@
 'use client';
 import { TrashIcon } from '@heroicons/react/24/solid';
-import { deleteReservationAction } from '../_lib/action';
+import { deleteReservationAction } from '../_lib/actions';
 import { useTransition } from 'react';
 
 type Prop = {
@@ -12,7 +12,7 @@ function DeleteReservation({ bookingId = '' }: Prop) {
       if (confirm('Are you sure you want to delete this reservation?'))
          startTransition(() => deleteReservationAction(bookingId));
    }
-   console.log(isPending);
+
    return (
       <button
          onClick={handleDelete}

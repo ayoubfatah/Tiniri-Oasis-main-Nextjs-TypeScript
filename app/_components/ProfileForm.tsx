@@ -1,6 +1,6 @@
 'use client';
 import { useFormStatus } from 'react-dom';
-import { updateGuestAction } from '../_lib/action';
+import { updateGuestAction } from '../_lib/actions';
 import SelectCountry from './SelectCountry';
 import Image from 'next/image';
 
