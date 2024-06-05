@@ -18,7 +18,6 @@ type BookedDate = {
 export default async function Reservation({ params, cabin }: any) {
    const session = await auth();
 
-   console.log(session);
    const [settings, bookedDates] = await Promise.all([
       getSettings(),
       getBookedDatesByCabinId(params.cabinId),
