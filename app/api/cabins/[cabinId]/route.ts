@@ -4,8 +4,7 @@ type Params = {
 };
 export async function GET(request: any, { params }: any) {
    const { cabinId } = params;
-   console.log('ssss');
-   console.log(cabinId);
+
    try {
       const [cabin, bookedDates] = await Promise.all([
          getCabin(cabinId),
