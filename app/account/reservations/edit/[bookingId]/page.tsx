@@ -1,4 +1,4 @@
-import UpdateReservationButton from '@/app/_components/UpdateReservationButton';
+import SubmitButton from '@/app/_components/SubmitButton';
 import { updateBookingAction } from '@/app/_lib/actions';
 import { getBooking, getCabin } from '@/app/_lib/data-service';
 
@@ -76,7 +76,7 @@ export default async function Page({ params }: { params: PageParams }) {
             </div>
 
             <div className="flex justify-end items-center gap-6">
-               <UpdateReservationButton />
+               <SubmitButton />
             </div>
          </form>
       </div>

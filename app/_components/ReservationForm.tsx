@@ -1,12 +1,29 @@
 'use client';
+import { differenceInDays } from 'date-fns';
 import { useReservation } from './ReservationContext';
+import { createBookingAction } from '../_lib/actions';
+import SubmitButton from './SubmitButton';
 
 ('');
 function ReservationForm({ cabin }: any) {
    // CHANGE
-   const { range }: any = useReservation();
-   const { maxCapacity } = cabin;
+   const { range, resetRange }: any = useReservation();
+   const { maxCapacity, regularPrice, discount, cabinId } = cabin;
 
+   const startDate = range.from;
+   const endDate = range.to;
+   const numNights = differenceInDays(endDate, startDate) + 1;
+   const cabinPrice = numNights * (regularPrice - discount);
+   const created_at = new Date().toISOString();
+
+   const bookingData = {
+      startDate,
+      endDate,
+      numNights,
+      cabinPrice,
+      cabinId,
+   };
+   const createBookingData = createBookingAction.bind(null, bookingData);
    return (
       <div className="scale-[1.01]">
          <div className="bg-primary-800 text-primary-300 px-16 py-2 flex justify-between items-center">
@@ -24,9 +41,26 @@ function ReservationForm({ cabin }: any) {
         </div> */}
          </div>
 
-         <form className="bg-primary-900 py-10 px-16 text-lg flex gap-5 flex-col">
+         <form
+            // action={createBookingData}
+            action={async (formData) => {
+               await createBookingData(formData);
+               resetRange();
+            }}
+            className="bg-primary-900 py-10 px-16 text-lg flex gap-5 flex-col"
+         >
             <div className="space-y-2">
                <label htmlFor="numGuests">How many guests?</label>
+               {/* hidden inputs */}
+
+               <input type="hidden" name="cabinId" value={cabin.id} />
+               <input type="hidden" name="startDate" value={startDate} />
+               <input type="hidden" name="endDate" value={endDate} />
+               <input type="hidden" name="numNights" value={numNights} />
+               <input type="hidden" name="cabinPrice" value={cabinPrice} />
+               <input type="hidden" name="created_at" value={created_at} />
+               {/* end of hidden inputs */}
+
                <select
                   name="numGuests"
                   id="numGuests"
@@ -63,9 +97,12 @@ function ReservationForm({ cabin }: any) {
                   Start by selecting dates
                </p>
 
-               <button className="bg-accent-500 px-8 py-4 text-primary-800 font-semibold hover:bg-accent-600 transition-all disabled:cursor-not-allowed disabled:bg-gray-500 disabled:text-gray-300">
-                  Reserve now
-               </button>
+               {startDate && endDate && (
+                  <SubmitButton
+                     text="Reserve now"
+                     pendingStatus="Reserving..."
+                  />
+               )}
             </div>
          </form>
       </div>
