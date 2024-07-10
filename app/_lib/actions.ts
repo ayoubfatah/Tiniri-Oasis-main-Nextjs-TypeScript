@@ -125,3 +125,4 @@ export async function createBookingAction(bookingData: any, formData: any) {
 
    redirect('/thankyou');
 }
+
